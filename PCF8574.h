@@ -67,15 +67,6 @@
 // Define where debug output will be printed.
 #define DEBUG_PRINTER Serial
 
-// Setup debug printing macros.
-#ifdef PCF8574_DEBUG
-	#define DEBUG_PRINT(...) { DEBUG_PRINTER.print(__VA_ARGS__); }
-	#define DEBUG_PRINTLN(...) { DEBUG_PRINTER.println(__VA_ARGS__); }
-#else
-	#define DEBUG_PRINT(...) {}
-	#define DEBUG_PRINTLN(...) {}
-#endif
-
 #ifdef PCF8574_LOW_LATENCY
 	#define READ_ELAPSED_TIME 0
 #else
@@ -193,11 +184,7 @@ public:
 		return transmissionStatus;
 	}
 
-	bool isLastTransmissionSuccess(){
-		DEBUG_PRINT(F("STATUS --> "));
-		DEBUG_PRINTLN(transmissionStatus);
-		return transmissionStatus==0;
-	}
+	bool isLastTransmissionSuccess();
 private:
 	uint8_t _address;
 

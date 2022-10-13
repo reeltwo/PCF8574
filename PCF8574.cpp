@@ -28,6 +28,15 @@
 #include "PCF8574.h"
 #include "Wire.h"
 
+// Setup debug printing macros.
+#ifdef PCF8574_DEBUG
+	#define DEBUG_PRINT(...) { DEBUG_PRINTER.print(__VA_ARGS__); }
+	#define DEBUG_PRINTLN(...) { DEBUG_PRINTER.println(__VA_ARGS__); }
+#else
+	#define DEBUG_PRINT(...) {}
+	#define DEBUG_PRINTLN(...) {}
+#endif
+
 /**
  * Constructor
  * @param address: i2c address
@@ -329,6 +338,12 @@ byte getBit(byte n, byte position)
    return (n >> position) & 1;
 }
 
+
+bool PCF8574::isLastTransmissionSuccess(){
+	DEBUG_PRINT(F("STATUS --> "));
+	DEBUG_PRINTLN(transmissionStatus);
+	return transmissionStatus==0;
+}
 
 //int8_t PCF8574::readEncoderValue(uint8_t pinA, uint8_t pinB){
 //	  bool changed = false;
