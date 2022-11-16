@@ -64,9 +64,6 @@
 // #define SEQUENCE_ENCODER_ALGORITHM
 // #define POKI_ENCODER_ALGORITHM
 
-// Define where debug output will be printed.
-#define DEBUG_PRINTER Serial
-
 #ifdef PCF8574_LOW_LATENCY
 	#define READ_ELAPSED_TIME 0
 #else
